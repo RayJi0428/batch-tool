@@ -1,19 +1,30 @@
 @echo off
-echo ã€Html5 Bç«™æª”æ¡ˆåŒ¯å‡ºã€‘
-::å»ºç«‹è³‡æ–™å¤¾
-SET /p folder=è«‹è¼¸å…¥è³‡æ–™å¤¾åç¨±:
+echo ¡iHtml5 B¯¸ÀÉ®×¶×¥X¡j
+::«Ø¥ß¸ê®Æ§¨
+SET /p folder=½Ğ¿é¤J¸ê®Æ§¨¦WºÙ:
 
 
-::è¨­å®šexporté ­å°¾ç‰ˆæœ¬è™Ÿ ex.80:85
-set /p rangeHP=è«‹è¼¸å…¥H/Pç‰ˆæœ¬ç¯„åœ(å¿½ç•¥è¼¸å…¥0):
-set /p rangeHM=è«‹è¼¸å…¥H/Mç‰ˆæœ¬ç¯„åœ(å¿½ç•¥è¼¸å…¥0):
-::å¦‚æœè¨­å®š0è‡ªå‹•æŒ‡å®šç‚ºæœ€æ–°ç‰ˆ
-if %rangeHP% == 0 set rangeHP=head:head
-if %rangeHM% == 0 set rangeHM=head:head
+::³]©wexportÀY§Àª©¥»¸¹ ex.80:85
+set /p inputHP=½Ğ¿é¤JH/P¶×¥X°_ÂIª©¥»(²¤¹L½Ğ«öENTER):
+set /p inputHM=½Ğ¿é¤JH/M¶×¥X°_ÂIª©¥»(²¤¹L½Ğ«öENTER):
+::¦pªG³]©w0¦Û°Ê«ü©w¬°³Ì·sª©
+if not defined inputHP (
+ set beginHP=head
+) else (
+ set /a "beginHP=%inputHP%-1"
+)
+set rangeHP=%beginHP%:head
 
-::åˆ‡æ›åˆ°æŒ‡å®šç›®éŒ„
+if not defined inputHM (
+ set beginHM=head
+) else (
+ set /a "beginHM=%inputHM%-1"
+)
+set rangeHM=%beginHM%:head
+
+::¤Á´«¨ì«ü©w¥Ø¿ı
 cd /d D:\pretest\Html5
-::è¨­å®šè¼¸å‡ºç›®éŒ„
+::³]©w¿é¥X¥Ø¿ı
 set exportHP="C:\Users\FH\Desktop\%folder%\Html5"
 FOR /F "tokens=1,2" %%I IN ('svn diff --summarize -r %rangeHP%') DO (
     IF NOT %%I == D (
@@ -24,9 +35,9 @@ FOR /F "tokens=1,2" %%I IN ('svn diff --summarize -r %rangeHP%') DO (
     )
 )
 
-::åˆ‡æ›åˆ°æŒ‡å®šç›®éŒ„
+::¤Á´«¨ì«ü©w¥Ø¿ı
 cd /d D:\pretest\Html5_device
-::è¨­å®šè¼¸å‡ºç›®éŒ„
+::³]©w¿é¥X¥Ø¿ı
 set exportHM="C:\Users\FH\Desktop\%folder%\Html5_device"
 FOR /F "tokens=1,2" %%I IN ('svn diff --summarize -r %rangeHM%') DO (
     IF NOT %%I == D (
