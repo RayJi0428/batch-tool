@@ -1,0 +1,3 @@
+@echo 正在更新 ...
+@TortoiseProc.exe /command:update /path:./Html5/* /closeonend:1"
+@TortoiseProc.exe /command:update /path:./Html5_device/* /closeonend:1"
